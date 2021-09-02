@@ -3,11 +3,18 @@ uuid = "2449c660-d36c-460e-a68b-92ab3c865b3e"
 authors = ["David Muhr <muhrdavid@gmail.com> and contributors"]
 version = "0.1.0"
 
+[deps]
+OutlierDetectionInterface = "1722ece6-f894-4ffc-b6be-6ca1174e2011"
+PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
+
 [compat]
 julia = "1"
+OutlierDetectionInterface = "0.1"
+PyCall = "1.92"
 
 [extras]
+OutlierDetectionTest = "66620973-d34b-445b-a614-4040704cad69"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["Test"]
+test = ["Test", "OutlierDetectionTest"]
