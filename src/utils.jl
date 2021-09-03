@@ -1,6 +1,6 @@
 using PyCall:PyObject, PyReverseDims, pyimport_conda
 
-struct PyModel <: Model
+struct PyModel <: DetectorModel
     pyobject::PyObject
 end
 
@@ -57,7 +57,7 @@ Extracts the relevant information from the expr and build the expression
 corresponding to the model constructor (see [`_model_constructor`](@ref)).
 """
 function py_constructor(ex)
-    # similar to @detector_model
+    # similar to @detector
     ex, modelname, params, defaults, constraints = OD._process_model_def(@__MODULE__, ex)
 
     # keyword constructor
