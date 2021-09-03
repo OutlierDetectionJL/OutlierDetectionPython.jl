@@ -25,7 +25,7 @@ Implements the `fit` method for an underlying python model.
 function pyod_fit(modelname, params)
     pymodelname = String(modelname)[3:end]
     quote
-        function OD.fit(model::$modelname, X::Data)::Tuple{Model, Scores}
+        function OD.fit(model::$modelname, X::Data)::Fit
             Xt = PyReverseDims(X) # from column-major to row-major
             # load the underlying python model with key-word arguments
             detector = pyod_import($pymodelname)()($((Expr(:kw, p, :(model.$p)) for p in params)...))
@@ -43,7 +43,7 @@ Implements the `score` method for an underlying python model.
 """
 function pyod_score(modelname)
     quote
-        function OD.transform(_::$modelname, model::Model, X::Data)::Scores
+        function OD.transform(_::$modelname, model::DetectorModel, X::Data)::Scores
             Xt = PyReverseDims(X) # change from column-major to row-major
             scores_test = model.pyobject.decision_function(Xt)
             return scores_test
