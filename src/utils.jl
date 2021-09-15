@@ -25,7 +25,7 @@ Implements the `fit` method for an underlying python model.
 function pyod_fit(modelname, params)
     pymodelname = String(modelname)[3:end]
     quote
-        function OD.fit(model::$modelname, X::Data)::Fit
+        function OD.fit(model::$modelname, X::Data; verbosity)::Fit
             Xt = PyReverseDims(X) # from column-major to row-major
             # load the underlying python model with key-word arguments
             detector = pyod_import($pymodelname)()($((Expr(:kw, p, :(model.$p)) for p in params)...))
