@@ -1,4 +1,4 @@
-module OutlierDetectionPy
+module OutlierDetectionPython
     using OutlierDetectionInterface
     const OD = OutlierDetectionInterface
     

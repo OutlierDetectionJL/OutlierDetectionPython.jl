@@ -1,4 +1,4 @@
-using OutlierDetectionPy
+using OutlierDetectionPython
 using OutlierDetectionTest
 
 data = TestData()
