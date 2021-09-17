@@ -23,7 +23,7 @@ make_docs_link(name::String) =
 Implements the `fit` method for an underlying python model.
 """
 function pyod_fit(modelname, params)
-    pymodelname = String(modelname)[3:end]
+    pymodelname = String(modelname)
     quote
         function OD.fit(model::$modelname, X::Data; verbosity)::Fit
             Xt = PyReverseDims(X) # from column-major to row-major
@@ -75,7 +75,6 @@ end
 
 macro pymodel(ex)
     modelname, params, clean_ex, ex = py_constructor(ex)
-    @assert startswith(String(modelname), "Py") "A python model name has to start with `Py`, e.g. PyKNNDetector"
     expr = quote
         Base.@__doc__($ex)
         $clean_ex

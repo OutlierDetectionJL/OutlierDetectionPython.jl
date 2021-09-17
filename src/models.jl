@@ -1,13 +1,13 @@
-"""    PyABODDetector(n_neighbors = 5,
+"""    ABODDetector(n_neighbors = 5,
                       method = "fast")
 $(make_docs_link("abod"))
 """
-@pymodel mutable struct PyABODDetector <: UnsupervisedDetector
+@pymodel mutable struct ABODDetector <: UnsupervisedDetector
     n_neighbors::Integer = 5::(_ > 0)
     method::String = "fast"::(_ in ("default", "fast"))
 end
 
-"""    PyCBLOFDetector(n_clusters = 8,
+"""    CBLOFDetector(n_clusters = 8,
                        alpha = 0.9,
                        beta = 5,
                        use_weights = false,
@@ -15,7 +15,7 @@ end
                        n_jobs = 1)
 $(make_docs_link("cblof"))
 """
-@pymodel mutable struct PyCBLOFDetector <: UnsupervisedDetector
+@pymodel mutable struct CBLOFDetector <: UnsupervisedDetector
     n_clusters::Integer = 8::(_ > 1)
     alpha::Real = 0.9::(0.5 < _ < 1)
     beta::Real = 5::(_ > 1)
@@ -24,30 +24,30 @@ $(make_docs_link("cblof"))
     n_jobs::Integer = 1::(_ >= -1)
 end
 
-"""    PyCOFDetector(n_neighbors = 5)
+"""    COFDetector(n_neighbors = 5)
 $(make_docs_link("cof"))
 """
-@pymodel mutable struct PyCOFDetector <: UnsupervisedDetector
+@pymodel mutable struct COFDetector <: UnsupervisedDetector
     n_neighbors::Integer = 5::(_ > 0)
 end
 
-"""    PyCOPODDetector()
+"""    COPODDetector()
 $(make_docs_link("copod"))
 """
-@pymodel mutable struct PyCOPODDetector <: UnsupervisedDetector end
+@pymodel mutable struct COPODDetector <: UnsupervisedDetector end
 
-"""    PyHBOSDetector(n_bins = 10,
+"""    HBOSDetector(n_bins = 10,
               alpha = 0.1,
               tol = 0.5)
 $(make_docs_link("hbos"))
 """
-@pymodel mutable struct PyHBOSDetector <: UnsupervisedDetector
+@pymodel mutable struct HBOSDetector <: UnsupervisedDetector
     n_bins::Integer = 10::(_ > 1)
     alpha::Real = 0.1::(0 < _ < 1)
     tol::Real = 0.5::(0 < _ < 1)
 end
 
-"""    PyIForestDetector(n_estimators = 100,
+"""    IForestDetector(n_estimators = 100,
                          max_samples = "auto",
                          max_features = 1.0
                          bootstrap = false,
@@ -57,7 +57,7 @@ end
                          n_jobs = 1)
 $(make_docs_link("iforest"))
 """
-@pymodel mutable struct PyIForestDetector <: UnsupervisedDetector
+@pymodel mutable struct IForestDetector <: UnsupervisedDetector
     n_estimators::Integer = 100::(_ > 0)
     max_samples::Union{String, Real} = "auto"
     max_features::Real = 1.0
@@ -68,7 +68,7 @@ $(make_docs_link("iforest"))
     n_jobs::Integer = 1::(_ >= -1)
 end
 
-"""    PyKNNDetector(n_neighbors = 5,
+"""    KNNDetector(n_neighbors = 5,
              method = "largest",
              radius = 1.0,
              algorithm = "auto",
@@ -79,7 +79,7 @@ end
              n_jobs = 1)
 $(make_docs_link("knn"))
 """
-@pymodel mutable struct PyKNNDetector <: UnsupervisedDetector
+@pymodel mutable struct KNNDetector <: UnsupervisedDetector
     n_neighbors::Integer = 5::(_ > 0)
     method::String = "largest"::(_ in ("largest", "mean", "median"))
     radius::Real = 1.0
@@ -91,27 +91,27 @@ $(make_docs_link("knn"))
     n_jobs::Integer = 1::(_ >= -1)
 end
 
-"""    PyLMDDDetector(n_iter = 50,
+"""    LMDDDetector(n_iter = 50,
                       dis_measure = "aad",
                       random_state = nothing)
 $(make_docs_link("lmdd"))
 """
-@pymodel mutable struct PyLMDDDetector <: UnsupervisedDetector
+@pymodel mutable struct LMDDDetector <: UnsupervisedDetector
     n_iter::Integer = 50::(_ > 0)
     dis_measure::String = "aad"::(_ in ("aad", "var", "iqr"))
     random_state::Union{Nothing, Integer} = nothing
 end
 
-"""    PyLODADetector(n_bins = 10,
+"""    LODADetector(n_bins = 10,
                       n_random_cuts = 100)
 $(make_docs_link("loda"))
 """
-@pymodel mutable struct PyLODADetector <: UnsupervisedDetector
+@pymodel mutable struct LODADetector <: UnsupervisedDetector
     n_bins::Integer = 10::(_ > 1)
     n_random_cuts::Integer = 100::(_ > 0)
 end
 
-"""    PyLOFDetector(n_neighbors = 5,
+"""    LOFDetector(n_neighbors = 5,
                      method = "largest",
                      algorithm = "auto",
                      leaf_size = 30,
@@ -121,7 +121,7 @@ end
                      n_jobs = 1)
 $(make_docs_link("lof"))
 """
-@pymodel mutable struct PyLOFDetector <: UnsupervisedDetector
+@pymodel mutable struct LOFDetector <: UnsupervisedDetector
     n_neighbors::Integer = 5::(_ > 0)
     algorithm::String = "auto"::(_ in ("auto", "ball_tree", "kd_tree", "brute"))
     leaf_size::Integer = 30::(_ > 0)
@@ -131,29 +131,29 @@ $(make_docs_link("lof"))
     n_jobs::Integer = 1::(_ >= -1)
 end
 
-"""    PyLOCIDetector(alpha = 0.5,
+"""    LOCIDetector(alpha = 0.5,
                       k = 3)
 $(make_docs_link("loci"))
 """
-@pymodel mutable struct PyLOCIDetector <: UnsupervisedDetector
+@pymodel mutable struct LOCIDetector <: UnsupervisedDetector
     alpha::Real = 0.5::(0 < _ < 1)
     k::Real = 3::(_ > 0)
 end
 
-"""    PyMCDDetector(store_precision = true,
+"""    MCDDetector(store_precision = true,
                      assume_centered = false,
                      support_fraction = nothing,
                      random_state = nothing)
 $(make_docs_link("mcd"))
 """
-@pymodel mutable struct PyMCDDetector <: UnsupervisedDetector
+@pymodel mutable struct MCDDetector <: UnsupervisedDetector
     store_precision::Bool = true
     assume_centered::Bool = false
     support_fraction::Union{Nothing, Real} = nothing
     random_state::Union{Nothing, Integer} = nothing
 end
 
-"""    PyOCSVMDetector(kernel = "rbf",
+"""    OCSVMDetector(kernel = "rbf",
                        degree = 3,
                        gamma = "auto",
                        coef0 = 0.0,
@@ -165,7 +165,7 @@ end
                        max_iter = -1)
 $(make_docs_link("ocsvm"))
 """
-@pymodel mutable struct PyOCSVMDetector <: UnsupervisedDetector
+@pymodel mutable struct OCSVMDetector <: UnsupervisedDetector
     kernel::String = "rbf"::(_ in ("linear", "poly", "rbf", "sigmoid", "precomputed"))
     degree::Integer = 3::(_ > 1)
     gamma::Union{String, Real} = "auto"
@@ -178,7 +178,7 @@ $(make_docs_link("ocsvm"))
     max_iter::Integer = -1
 end
 
-"""    PyPCADetector(n_components = nothing,
+"""    PCADetector(n_components = nothing,
                      n_selected_components = nothing,
                      copy = true,
                      whiten = false,
@@ -190,7 +190,7 @@ end
                      random_state = nothing)
 $(make_docs_link("pca"))
 """
-@pymodel mutable struct PyPCADetector <: UnsupervisedDetector
+@pymodel mutable struct PCADetector <: UnsupervisedDetector
     n_components::Union{Nothing, Real} = nothing
     n_selected_components::Union{Nothing, Integer} = nothing
     copy::Bool = true
@@ -203,30 +203,30 @@ $(make_docs_link("pca"))
     random_state::Union{Nothing, Integer} = nothing
 end
 
-"""    PyRODDetector(parallel_execution = false)
+"""    RODDetector(parallel_execution = false)
 $(make_docs_link("rod"))
 """
-@pymodel mutable struct PyRODDetector <: UnsupervisedDetector
+@pymodel mutable struct RODDetector <: UnsupervisedDetector
     parallel_execution::Bool = false
 end
 
-"""    PySODDetector(n_neighbors = 5,
+"""    SODDetector(n_neighbors = 5,
                      ref_set = 10,
                      alpha = 0.8)
 $(make_docs_link("sod"))
 """
-@pymodel mutable struct PySODDetector <: UnsupervisedDetector
+@pymodel mutable struct SODDetector <: UnsupervisedDetector
     n_neighbors::Integer = 20::(_ > 0)
     ref_set::Integer = 10::(_ > 0)
     alpha::Real = 0.8::(0 < _ < 1)
 end
 
-"""    PySOSDetector(perplexity = 4.5,
+"""    SOSDetector(perplexity = 4.5,
              metric = "minkowski",
              eps = 1e-5)
 $(make_docs_link("sos"))
 """
-@pymodel mutable struct PySOSDetector <: UnsupervisedDetector
+@pymodel mutable struct SOSDetector <: UnsupervisedDetector
     perplexity::Real = 4.5::(_ > 0)
     metric::String = "minkowski"::(_ in ("cityblock", "cosine", "euclidean", "l1", "l2", "manhatten", "braycurtis", "canberra", "chebyshev", "correlation", "dice", "hamming", "jaccard", "kulsinski", "mahalanobis", "matching", "minkowski", "rogerstanimoto", "russellrao", "seuclidean", "sokalmichener", "sokalsneath", "sqeuclidean", "yule"))
     eps::Real = 1e-5::(_ > 0)

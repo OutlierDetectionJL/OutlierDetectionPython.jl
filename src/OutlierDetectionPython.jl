@@ -6,23 +6,23 @@ module OutlierDetectionPython
     include("models.jl")
 
     UUID = "2449c660-d36c-460e-a68b-92ab3c865b3e"
-    MODELS = [:PyABODDetector,
-              :PyCBLOFDetector,
-              :PyCOFDetector,
-              :PyCOPODDetector,
-              :PyHBOSDetector,
-              :PyIForestDetector,
-              :PyKNNDetector,
-              :PyLMDDDetector,
-              :PyLODADetector,
-              :PyLOFDetector,
-              :PyLOCIDetector,
-              :PyMCDDetector,
-              :PyOCSVMDetector,
-              :PyPCADetector,
-              :PyRODDetector,
-              :PySODDetector,
-              :PySOSDetector]
+    MODELS = [:ABODDetector,
+              :CBLOFDetector,
+              :COFDetector,
+              :COPODDetector,
+              :HBOSDetector,
+              :IForestDetector,
+              :KNNDetector,
+              :LMDDDetector,
+              :LODADetector,
+              :LOFDetector,
+              :LOCIDetector,
+              :MCDDetector,
+              :OCSVMDetector,
+              :PCADetector,
+              :RODDetector,
+              :SODDetector,
+              :SOSDetector]
 
     for model in MODELS
         @eval begin

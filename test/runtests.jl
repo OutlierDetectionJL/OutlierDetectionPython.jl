@@ -5,52 +5,52 @@ data = TestData()
 run_test(detector) = test_detector(detector, data)
 
 # ABOD
-run_test(PyABODDetector())
+run_test(ABODDetector())
 
 # CBLOF
-run_test(PyCBLOFDetector(random_state=0))
+run_test(CBLOFDetector(random_state=0))
 
 # COF
-run_test(PyCOFDetector())
+run_test(COFDetector())
 
 # COPOD
-run_test(PyCOPODDetector())
+run_test(COPODDetector())
 
 # HBOS
-run_test(PyHBOSDetector())
+run_test(HBOSDetector())
 
 # IForest
-run_test(PyIForestDetector(random_state=0))
+run_test(IForestDetector(random_state=0))
 
 # KNN
-run_test(PyKNNDetector())
+run_test(KNNDetector())
 
 # LMDD
-run_test(PyLMDDDetector(random_state=0))
+run_test(LMDDDetector(random_state=0))
 
 # LOD
-run_test(PyLODADetector())
+run_test(LODADetector())
 
 # LOF
-run_test(PyLOFDetector())
+run_test(LOFDetector())
 
 # LOCI
-run_test(PyLOCIDetector())
+run_test(LOCIDetector())
 
 # MCD
-run_test(PyMCDDetector(random_state=0))
+run_test(MCDDetector(random_state=0))
 
 # SVM
-run_test(PyOCSVMDetector())
+run_test(OCSVMDetector())
 
 # PCA
-run_test(PyPCADetector(random_state=0))
+run_test(PCADetector(random_state=0))
 
 # ROD
-run_test(PyRODDetector())
+run_test(RODDetector())
 
 # SOD
-run_test(PySODDetector())
+run_test(SODDetector())
 
 # SOS
-run_test(PySOSDetector())
+run_test(SOSDetector())
