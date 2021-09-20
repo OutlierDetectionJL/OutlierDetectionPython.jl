@@ -1,6 +1,9 @@
 using OutlierDetectionPython
 using OutlierDetectionTest
 
+# Test the metadata of all exported detectors
+test_meta.(eval.(OutlierDetectionPython.MODELS))
+
 data = TestData()
 run_test(detector) = test_detector(detector, data)
 
