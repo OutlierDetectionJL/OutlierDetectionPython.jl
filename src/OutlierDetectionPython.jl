@@ -1,7 +1,7 @@
 module OutlierDetectionPython
     using OutlierDetectionInterface
     const OD = OutlierDetectionInterface
-    
+
     include("utils.jl")
     include("models.jl")
 
