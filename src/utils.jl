@@ -17,11 +17,7 @@ pyod_import(name::Symbol) = pyod_import(String(name))
 make_docs_link(name::String) =
     "<https://pyod.readthedocs.io/en/latest/pyod.models.html#module-pyod.models.$(lowercase(name))>"
 
-"""
-    pyod_fit(modelname, params)
-
-Implements the `fit` method for an underlying python model.
-"""
+# Implements the `fit` method for an underlying PyOD model.
 function pyod_fit(modelname, params)
     pymodelname = String(modelname)
     quote
@@ -36,11 +32,7 @@ function pyod_fit(modelname, params)
     end
 end
 
-"""
-    pyod_score(modelname)
-
-Implements the `score` method for an underlying python model.
-"""
+# Implements the `score` method for an underlying PyOD model.
 function pyod_score(modelname)
     quote
         function OD.transform(_::$modelname, model::DetectorModel, X::Data)::Scores
@@ -51,11 +43,7 @@ function pyod_score(modelname)
     end
 end
 
-"""
-    py_constructor(expr)
-Extracts the relevant information from the expr and build the expression
-corresponding to the model constructor (see [`_model_constructor`](@ref)).
-"""
+# Extracts the relevant information from the expr and build the expression corresponding to the model constructor.
 function py_constructor(ex)
     # similar to @detector
     ex, modelname, params, defaults, constraints = OD._process_model_def(@__MODULE__, ex)
