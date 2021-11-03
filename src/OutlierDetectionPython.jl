@@ -26,6 +26,7 @@ module OutlierDetectionPython
 
     for model in MODELS
         @eval begin
+            OD.@default_frontend $model
             OD.metadata_pkg($model, package_name=string(@__MODULE__), package_uuid=$UUID,
                             package_url="https://github.com/OutlierDetectionJL/$(@__MODULE__).jl",
                             is_pure_julia=false, package_license="MIT", is_wrapper=false)

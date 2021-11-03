@@ -1,7 +1,7 @@
 name = "OutlierDetectionPython"
 uuid = "2449c660-d36c-460e-a68b-92ab3c865b3e"
 authors = ["David Muhr <muhrdavid@gmail.com> and contributors"]
-version = "0.1.1"
+version = "0.1.2"
 
 [deps]
 OutlierDetectionInterface = "1722ece6-f894-4ffc-b6be-6ca1174e2011"
