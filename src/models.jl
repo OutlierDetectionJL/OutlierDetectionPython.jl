@@ -215,22 +215,26 @@ end
 
 """    SODDetector(n_neighbors = 5,
                    ref_set = 10,
-                   alpha = 0.8)
+                   alpha = 0.8,
+                   contamination = 0.1)
 $(make_docs_link("sod"))
 """
 @pymodel mutable struct SODDetector <: UnsupervisedDetector
     n_neighbors::Integer = 20::(_ > 0)
     ref_set::Integer = 10::(_ > 0)
     alpha::Real = 0.8::(0 < _ < 1)
+    contamination::Real = 0.1::(0 < _ < 0.5)
 end
 
 """    SOSDetector(perplexity = 4.5,
                    metric = "minkowski",
-                   eps = 1e-5)
+                   eps = 1e-5,
+                   contamination = 0.1)
 $(make_docs_link("sos"))
 """
 @pymodel mutable struct SOSDetector <: UnsupervisedDetector
     perplexity::Real = 4.5::(_ > 0)
     metric::String = "minkowski"::(_ in ("cityblock", "cosine", "euclidean", "l1", "l2", "manhatten", "braycurtis", "canberra", "chebyshev", "correlation", "dice", "hamming", "jaccard", "kulsinski", "mahalanobis", "matching", "minkowski", "rogerstanimoto", "russellrao", "seuclidean", "sokalmichener", "sokalsneath", "sqeuclidean", "yule"))
     eps::Real = 1e-5::(_ > 0)
+    contamination::Real = 0.1::(0 < _ < 0.5)
 end

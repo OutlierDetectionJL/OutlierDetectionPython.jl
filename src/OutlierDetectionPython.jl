@@ -1,6 +1,12 @@
 module OutlierDetectionPython
     using OutlierDetectionInterface
     const OD = OutlierDetectionInterface
+    using PythonCall
+    const numpy = PythonCall.pynew()
+
+    function __init__()
+        PythonCall.pycopy!(numpy, pyimport("numpy"))
+    end
 
     include("utils.jl")
     include("models.jl")

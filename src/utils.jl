@@ -1,7 +1,6 @@
-using PyCall:PyObject, PyReverseDims, pyimport_conda
 
 struct PyModel <: DetectorModel
-    pyobject::PyObject
+    pyobject::Py
 end
 
 # lazily import a python model
@@ -10,7 +9,7 @@ pyod_import(name::String) = () -> begin
     module_name = lowercase(raw_name)
     # names are not consistently uppercased
     model_name = raw_name == "IForest" ? raw_name : uppercase(raw_name)
-    getproperty(pyimport_conda("pyod.models.$(module_name)", "pyod", "conda-forge"), model_name)
+    getproperty(pyimport("pyod.models.$(module_name)"), model_name)
 end
 pyod_import(name::Symbol) = pyod_import(String(name))
 
@@ -22,12 +21,12 @@ function pyod_fit(modelname, params)
     pymodelname = String(modelname)
     quote
         function OD.fit(model::$modelname, X::Data; verbosity)::Fit
-            Xt = PyReverseDims(X) # from column-major to row-major
+            Xt = numpy.array(PermutedDimsArray(X, (2,1))) # from column-major to row-major
             # load the underlying python model with key-word arguments
             detector = pyod_import($pymodelname)()($((Expr(:kw, p, :(model.$p)) for p in params)...))
             detector.fit(Xt)
             # the underlying python model is out model
-            return PyModel(detector), detector.decision_scores_
+            return PyModel(detector), pyconvert(Array, detector.decision_scores_)
         end
     end
 end
@@ -36,9 +35,9 @@ end
 function pyod_score(modelname)
     quote
         function OD.transform(_::$modelname, model::DetectorModel, X::Data)::Scores
-            Xt = PyReverseDims(X) # change from column-major to row-major
+            Xt = numpy.array(PermutedDimsArray(X, (2,1))) # from column-major to row-major
             scores_test = model.pyobject.decision_function(Xt)
-            return scores_test
+            return pyconvert(Vector, scores_test)
         end
     end
 end
