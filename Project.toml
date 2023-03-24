@@ -1,16 +1,16 @@
 name = "OutlierDetectionPython"
 uuid = "2449c660-d36c-460e-a68b-92ab3c865b3e"
 authors = ["David Muhr <muhrdavid@gmail.com> and contributors"]
-version = "0.1.2"
+version = "0.2.0"
 
 [deps]
 OutlierDetectionInterface = "1722ece6-f894-4ffc-b6be-6ca1174e2011"
-PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
+PythonCall = "6099a3de-0909-46bc-b1f4-468b9a2dfc0d"
 
 [compat]
 OutlierDetectionInterface = "0.1"
-PyCall = "1.92"
-julia = "1"
+PythonCall = "0.9"
+julia = "1.6"
 
 [extras]
 OutlierDetectionTest = "66620973-d34b-445b-a614-4040704cad69"

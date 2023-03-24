@@ -29,14 +29,58 @@ end
 $(make_docs_link("cof"))
 """
 @pymodel mutable struct COFDetector <: UnsupervisedDetector
-    n_neighbors::Integer = 5::(_ > 0)
+    n_neighbors::Integer = 20::(_ > 0)
     method::String = "fast"::(_ in ("fast", "memory"))
 end
 
-"""    COPODDetector()
+"""    CDDetector(whitening = true,
+                  rule_of_thumb = false)
+$(make_docs_link("cd"))
+"""
+@pymodel mutable struct CDDetector <: UnsupervisedDetector
+    whitening::Bool = true
+    rule_of_thumb::Bool = false
+end
+
+"""    COPODDetector(n_jobs = 1)
 $(make_docs_link("copod"))
 """
-@pymodel mutable struct COPODDetector <: UnsupervisedDetector end
+@pymodel mutable struct COPODDetector <: UnsupervisedDetector
+    n_jobs::Integer = 1::(_ >= -1)
+end
+
+"""    ECODDetector(n_jobs = 1)
+$(make_docs_link("ecod"))
+"""
+@pymodel mutable struct ECODDetector <: UnsupervisedDetector
+    n_jobs = 1
+end
+
+"""    GMMDetector(n_components=1,
+                   covariance_type="full",
+                   tol=0.001,
+                   reg_covar=1e-06,
+                   max_iter=100,
+                   n_init=1,
+                   init_params="kmeans",
+                   weights_init=None,
+                   means_init=None,
+                   precisions_init=None,
+                   random_state=None,
+                   warm_start=False)
+$(make_docs_link("gmm"))
+"""
+@pymodel mutable struct GMMDetector <: UnsupervisedDetector
+    n_components::Integer = 1::(_ > 0)
+    covariance_type::String = "full"::(_ in ("full", "tied", "diag", "spherical"))
+    tol::Real = 0.001::(_ > 0)
+    reg_covar::Real = 1e-06::(_ >= 0)
+    max_iter::Integer = 100::(_ > 0)
+    n_init::Integer = 1::(_ > 0)
+    init_params::String = "kmeans"::(_ in ("kemans", "random"))
+    random_state::Union{Nothing,Integer} = nothing
+    warm_start::Bool = false
+end
 
 """    HBOSDetector(n_bins = 10,
                     alpha = 0.1,
@@ -53,7 +97,6 @@ end
                        max_samples = "auto",
                        max_features = 1.0
                        bootstrap = false,
-                       behaviour = "new",
                        random_state = nothing,
                        verbose = 0,
                        n_jobs = 1)
@@ -64,10 +107,35 @@ $(make_docs_link("iforest"))
     max_samples::Union{String,Real} = "auto"
     max_features::Real = 1.0
     bootstrap::Bool = false
-    behaviour::String = "new"
     random_state::Union{Nothing,Integer} = nothing
     verbose::Integer = 0::(0 <= _ <= 2)
     n_jobs::Integer = 1::(_ >= -1)
+end
+
+"""    INNEDetector(n_estimators=200,
+                    max_samples="auto",
+                    random_state=None)
+$(make_docs_link("inne"))
+"""
+@pymodel mutable struct INNEDetector <: UnsupervisedDetector
+    n_estimators::Integer = 200::(_ > 0)
+    max_samples::Union{Integer,Real,String} = "auto"
+    random_state::Union{Nothing,Integer} = nothing
+end
+
+"""    KDEDetector(bandwidth=1.0,
+                   algorithm="auto",
+                   leaf_size=30,
+                   metric="minkowski",
+                   metric_params=None)
+$(make_docs_link("kde"))
+"""
+@pymodel mutable struct KDEDetector <: UnsupervisedDetector
+    bandwidth::Real = 1.0::(_ > 0)
+    algorithm::String = "auto"::(_ in ("auto", "ball_tree", "kd_tree", "brute"))
+    leaf_size::Integer = 30::(_ > 0)
+    metric::String = "minkowski"::(_ in ("cityblock", "cosine", "euclidean", "l1", "l2", "manhatten", "braycurtis", "canberra", "chebyshev", "correlation", "dice", "hamming", "jaccard", "kulsinski", "mahalanobis", "matching", "minkowski", "rogerstanimoto", "russellrao", "seuclidean", "sokalmichener", "sokalsneath", "sqeuclidean", "yule"))
+    metric_params::Union{Nothing,Any} = nothing
 end
 
 """    KNNDetector(n_neighbors = 5,
