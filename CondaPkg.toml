@@ -1,5 +1,8 @@
+channels = ["conda-forge"]
+
 [deps]
 pyod = "=1"
 
 [deps.llvmlite]
 channel = "numba"
+build = "*"
