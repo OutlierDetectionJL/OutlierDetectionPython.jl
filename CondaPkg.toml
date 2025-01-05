@@ -1,6 +1,7 @@
 channels = ["conda-forge"]
 
 [deps]
+python = "=3.12"
 pyod = "=2"
 
 [deps.llvmlite]
