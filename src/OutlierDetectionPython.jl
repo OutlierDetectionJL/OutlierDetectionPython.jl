@@ -3,9 +3,11 @@ module OutlierDetectionPython
     const OD = OutlierDetectionInterface
     using PythonCall
     const numpy = PythonCall.pynew()
+    const sklearn = PythonCall.pynew()
 
     function __init__()
         PythonCall.pycopy!(numpy, pyimport("numpy"))
+        PythonCall.pycopy!(sklearn, pyimport("sklearn"))
     end
 
     include("utils.jl")
