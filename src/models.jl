@@ -38,8 +38,7 @@ end
 $(make_docs_link("cd"))
 """
 @pymodel mutable struct CDDetector <: UnsupervisedDetector
-    whitening::Bool = true
-    rule_of_thumb::Bool = false
+    model::Py = sklearn_linear.LinearRegression()
 end
 
 """    COPODDetector(n_jobs = 1)
@@ -77,7 +76,7 @@ $(make_docs_link("gmm"))
     reg_covar::Real = 1e-06::(_ >= 0)
     max_iter::Integer = 100::(_ > 0)
     n_init::Integer = 1::(_ > 0)
-    init_params::String = "kmeans"::(_ in ("kemans", "random"))
+    init_params::String = "kmeans"::(_ in ("kmeans", "random"))
     random_state::Union{Nothing,Integer} = nothing
     warm_start::Bool = false
 end
