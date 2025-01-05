@@ -38,7 +38,7 @@ end
 $(make_docs_link("cd"))
 """
 @pymodel mutable struct CDDetector <: UnsupervisedDetector
-    model::Py = sklearn.linear_model.LinearRegression()
+    model::Py = sklearn_linear.LinearRegression()
 end
 
 """    COPODDetector(n_jobs = 1)
