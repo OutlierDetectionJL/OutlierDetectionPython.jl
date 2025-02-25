@@ -1,4 +1,4 @@
-channels = ["conda-forge"]
+channels = ["conda-forge", "numba"]
 
 [deps]
 pyod = "=2"
