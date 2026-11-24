@@ -1,8 +1,4 @@
-channels = ["conda-forge", "numba"]
+channels = ["conda-forge"]
 
 [deps]
 pyod = "=2"
-
-[deps.llvmlite]
-channel = "numba"
-build = "*"
